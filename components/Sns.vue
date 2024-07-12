@@ -17,7 +17,7 @@
     <div class="flex flex-col items-center">
       <div class="flex gap-1">
         <simple-icons-xiaohongshu />
-        <div>378+</div>
+        <div>400+</div>
       </div>
       <div text-sm>@三花玩儿ai</div>
     </div>
@@ -31,7 +31,7 @@
     <div class="flex flex-col items-center">
       <div class="flex gap-1">
         <simple-icons-tiktok />
-        <div>220+</div>
+        <div>900+</div>
       </div>
       <div text-sm>@三花ai</div>
     </div>
