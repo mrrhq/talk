@@ -15,6 +15,10 @@ import { useNav } from '@slidev/client'
 import seedrandom from 'seedrandom'
 
 const { currentSlideRoute } = useNav()
+const theme = {
+  orange: ["from-[#ea580c]", "from-orange-400", "from-lime"],
+  blue: ["from-[#0d6e9c]", "from-blue-400", "from-teal"],
+}
 
 export type Range = [number, number]
 
@@ -39,6 +43,11 @@ const seed = computed<string>(() => (formatter.value.glowSeed === 'false' || for
   ? Date.now().toString()
   : formatter.value.glowSeed || 'default',
 )
+const themeName = computed(() => formatter.value.glowColor || localStorage.getItem('theme-name') || 'orange')
+const themeColor = computed<typeof theme['orange']>(() => theme[themeName.value])
+watch(themeColor, () => {
+  localStorage.setItem('theme-name', themeName.value)
+})
 const overflow = 0.3
 const disturb = 0.3
 const disturbChance = 0.3
@@ -156,15 +165,18 @@ const poly3 = usePloy(3)
     aria-hidden="true"
   >
     <div
-      class="clip bg-gradient-to-r from-[#ea580c] to-white/10"
+      class="clip bg-gradient-to-r to-white/10"
+      :class="themeColor[0]"
       :style="{ 'clip-path': `polygon(${poly1})`, 'opacity': opacity }"
     />
     <div
-      class="clip bg-gradient-to-l from-orange-400 to-white/10"
+      class="clip bg-gradient-to-l to-white/10"
+      :class="themeColor[1]"
       :style="{ 'clip-path': `polygon(${poly2})`, 'opacity': opacity }"
     />
     <div
-      class="clip bg-gradient-to-t from-lime to-white/10"
+      class="clip bg-gradient-to-t to-white/10"
+      :class="themeColor[2]"
       :style="{ 'clip-path': `polygon(${poly3})`, 'opacity': 0.2 }"
     />
   </div>
